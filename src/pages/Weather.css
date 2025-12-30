@@ -1,8 +1,7 @@
-/* 🌐 MAIN CONTAINER */
 .video-bg {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
 
   display: flex;
@@ -12,56 +11,70 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* 🎥 VIDEO BACKGROUND */
 .bg-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: cover;
-  z-index: -1;
+  object-position: center center; 
+
+  z-index: -2;
 }
 
-/* 🧊 GLASS CARD */
+.bg-video::-webkit-media-controls,
+.bg-video::-webkit-media-controls-overlay-play-button,
+.bg-video::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+video {
+  pointer-events: none;
+}
+
 .weather-card {
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
   background: rgba(255, 255, 255, 0.25);
   border-radius: 22px;
   padding: 30px;
   width: 420px;
-  max-width: 90%; /* 🔥 mobile safe */
+  max-width: 92%;
+
   text-align: center;
-  color: rgb(9, 9, 9);
+  color: #000;
+
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
 
-/* 🔍 SEARCH */
 .search {
   display: flex;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 22px;
 }
 
 .search input {
   flex: 1;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
   border: none;
   outline: none;
+  font-size: 15px;
 }
 
 .search button {
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 12px 18px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
   font-weight: 600;
 }
 
-/* 🌤️ FORECAST */
 .forecast {
   display: flex;
   justify-content: space-between;
@@ -70,9 +83,9 @@
 }
 
 .day {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  padding: 12px;
+  background: rgba(255, 255, 255, 0.32);
+  border-radius: 18px;
+  padding: 16px;
   width: 115px;
 }
 
@@ -93,32 +106,69 @@
   color: #ffdede;
 }
 
-/* 📱 MOBILE RESPONSIVE */
 @media (max-width: 600px) {
+
+  .video-bg {
+    align-items: center;
+    padding: 0; 
+  }
+
+  .bg-video {
+    object-position: center top;
+  }
+
   .weather-card {
-    padding: 20px;
+    width: 94%;
+    margin: 16px auto;
+    padding: 18px;
+
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.28);
   }
 
   .search {
+    margin-top: 8px;
+    margin-bottom: 24px;
+
+    display: flex;
     flex-direction: column;
+    gap: 12px;
   }
 
+  .search input,
   .search button {
     width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 14px;
   }
 
   .forecast {
     flex-direction: column;
     align-items: center;
+    gap: 16px;
   }
 
   .day {
     width: 100%;
-    max-width: 250px;
+    max-width: 320px;
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .day img {
+    width: 70px;
+  }
+
+  .day h3 {
+    font-size: 18px;
+  }
+
+  .day p {
+    font-size: 15px;
   }
 }
 
-/* 📱 TABLET RESPONSIVE */
 @media (min-width: 601px) and (max-width: 900px) {
   .weather-card {
     width: 360px;

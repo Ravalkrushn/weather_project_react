@@ -17,9 +17,7 @@ const Weather = () => {
 
     try {
       const res = await getForecastByCity(city.trim());
-
       const dailyData = [res.data.list[0], res.data.list[8], res.data.list[16]];
-
       setForecast(dailyData);
     } catch (err) {
       setError("City not found. Please check spelling.");
@@ -54,19 +52,43 @@ const Weather = () => {
   return (
     <div className="video-bg">
       {bgType === "summer" && (
-        <video autoPlay muted loop className="bg-video">
+        <video
+          className="bg-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls={false}
+          disablePictureInPicture
+        >
           <source src="/summer.mp4" type="video/mp4" />
         </video>
       )}
 
       {bgType === "monsoon" && (
-        <video autoPlay muted loop className="bg-video">
+        <video
+          className="bg-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls={false}
+          disablePictureInPicture
+        >
           <source src="/moonsoon.mp4" type="video/mp4" />
         </video>
       )}
 
       {bgType === "winter" && (
-        <video autoPlay muted loop className="bg-video">
+        <video
+          className="bg-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls={false}
+          disablePictureInPicture
+        >
           <source src="/winter.mp4" type="video/mp4" />
         </video>
       )}
@@ -82,7 +104,7 @@ const Weather = () => {
           />
           <button onClick={fetchWeather}>Search</button>
         </div>
-        {/* condtional rendiring*/}
+
         {loading && <p className="info">Loading...</p>}
         {error && <p className="error">{error}</p>}
 
