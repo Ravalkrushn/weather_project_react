@@ -29,6 +29,18 @@ const Weather = () => {
   const getDayName = (date) =>
     new Date(date).toLocaleDateString("en-US", { weekday: "long" });
 
+  const getCustomIcon = (description) => {
+    const desc = description.toLowerCase();
+    if (desc.includes("clear")) return "/icons/sun.svg";
+    if (desc.includes("cloud")) return "/icons/cloudy.svg";
+    if (desc.includes("rain") || desc.includes("drizzle"))
+      return "/icons/rain.svg";
+    if (desc.includes("snow") || desc.includes("sleet"))
+      return "/icons/snow.svg";
+    if (desc.includes("thunderstorm")) return "/icons/rain.svg";
+    return "/icons/default.png";
+  };
+
   const getBackgroundType = (weatherMain, temp) => {
     if (
       weatherMain === "Rain" ||
@@ -113,7 +125,7 @@ const Weather = () => {
             <div className="day" key={i}>
               <h3>{getDayName(day.dt_txt)}</h3>
               <img
-                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                src={getCustomIcon(day.weather[0].description)}
                 alt="weather"
               />
               <h2>{Math.round(day.main.temp)}°C</h2>
