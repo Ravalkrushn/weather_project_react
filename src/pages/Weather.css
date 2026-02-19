@@ -20,7 +20,7 @@
   height: 100%;
 
   object-fit: cover;
-  object-position: center center; 
+  object-position: center center;
 
   z-index: -2;
 }
@@ -70,12 +70,23 @@ video {
   box-sizing: border-box;
 }
 
+.search > input:focus-visible {
+  box-shadow: 0 0 0 3px oklch(43.9% 0 0);
+}
+
 .search button {
   padding: 12px 18px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   font-weight: 600;
+}
+.search > button {
+  outline: none;
+}
+
+.search > button:focus-visible {
+  box-shadow: 0 0 0 3px oklch(43.9% 0 0);
 }
 
 .forecast {
@@ -90,6 +101,7 @@ video {
   border-radius: 18px;
   padding: 16px;
   width: 115px;
+  box-shadow: 0 0 0 1px oklch(14.5% 0 0);
 }
 
 .day img {
@@ -102,18 +114,39 @@ video {
 
 .info {
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info > .loader {
+  width: 25px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #141414;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 .error {
   margin-top: 10px;
-  color: #ffdede;
+  color: #000000;
 }
 
 @media (max-width: 600px) {
-
   .video-bg {
     align-items: center;
-    padding: 0; 
+    padding: 0;
   }
 
   .bg-video {
@@ -121,7 +154,7 @@ video {
   }
 
   .weather-card {
-    width: 94%;
+    width: 87%;
     margin: 16px auto;
     padding: 18px;
 
@@ -157,6 +190,24 @@ video {
     max-width: 320px;
     padding: 20px;
     border-radius: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wrapper1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 1px;
+  }
+
+  .wrapper2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 1px;
   }
 
   .day img {
@@ -174,7 +225,7 @@ video {
 
 @media (min-width: 601px) and (max-width: 900px) {
   .weather-card {
-    width: 360px;
+    width: 420px;
   }
 
   .day {

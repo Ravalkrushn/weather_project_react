@@ -117,19 +117,27 @@ const Weather = () => {
           <button onClick={fetchWeather}>Search</button>
         </div>
 
-        {loading && <p className="info">Loading...</p>}
+        {loading && (
+          <p className="info">
+            <span className="loader"></span>
+          </p>
+        )}
         {error && <p className="error">{error}</p>}
 
         <div className="forecast">
           {forecast.map((day, i) => (
             <div className="day" key={i}>
-              <h3>{getDayName(day.dt_txt)}</h3>
-              <img
-                src={getCustomIcon(day.weather[0].description)}
-                alt="weather"
-              />
-              <h2>{Math.round(day.main.temp)}°C</h2>
-              <p>{day.weather[0].description}</p>
+              <div className="wrapper1">
+                <h3>{getDayName(day.dt_txt)}</h3>
+                <img
+                  src={getCustomIcon(day.weather[0].description)}
+                  alt="weather"
+                />
+              </div>
+              <div className="wrapper2">
+                <h2>{Math.round(day.main.temp)}°C</h2>
+                <p>{day.weather[0].description}</p>
+              </div>
             </div>
           ))}
         </div>
